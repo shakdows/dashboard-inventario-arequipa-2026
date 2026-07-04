@@ -9,41 +9,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
   :root{
-    --bg:#eef1f8; --bg2:#e7ebf5; --card:#ffffff;
-    --ink:#161d33; --txt:#39415f; --muted:#7c86a4; --muted2:#9aa3bd;
-    --line:#e4e8f2; --line2:#eef1f8;
-    --purple:#6d4eff; --purple-d:#5a3fe0; --teal:#0bb89a; --teal-b:#00d9b8;
-    --amber:#f5a623; --red:#f2445b; --green:#12b981;
-    --navy:#141c34;
+    --bg:#eef1f8;--bg2:#e7ebf5;--card:#ffffff;--ink:#161d33;--txt:#39415f;--muted:#7c86a4;--muted2:#9aa3bd;
+    --line:#e4e8f2;--line2:#eef1f8;--purple:#6d4eff;--purple-d:#5a3fe0;--teal:#0bb89a;--teal-b:#00d9b8;
+    --amber:#f5a623;--red:#f2445b;--green:#12b981;--navy:#141c34;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'Exo 2',system-ui,sans-serif;background:var(--bg);color:var(--txt);
-    min-height:100vh;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;
-    background-image:
-      radial-gradient(1100px 560px at 88% -12%,rgba(109,78,255,.09),transparent 60%),
-      radial-gradient(900px 520px at -4% 108%,rgba(11,184,154,.08),transparent 60%);}
+  body{font-family:'Exo 2',system-ui,sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(1100px 560px at 88% -12%,rgba(109,78,255,.09),transparent 60%),radial-gradient(900px 520px at -4% 108%,rgba(11,184,154,.08),transparent 60%);}
   .wrap{max-width:1400px;margin:0 auto;padding:30px 34px 64px}
-
-  /* ---------- HEADER ---------- */
-  header{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:26px 30px;border-radius:22px;
-    position:relative;background:linear-gradient(120deg,#fff,#f7f9ff);
-    border:1px solid var(--line);box-shadow:0 20px 50px -30px rgba(80,70,160,.35)}
+  header{display:flex;align-items:center;gap:24px;flex-wrap:wrap;padding:26px 30px;border-radius:22px;position:relative;background:linear-gradient(120deg,#fff,#f7f9ff);border:1px solid var(--line);box-shadow:0 20px 50px -30px rgba(80,70,160,.35)}
   .logo-zone{position:relative;flex:none}
-  .logo-badge{width:84px;height:84px;border-radius:20px;display:grid;place-items:center;cursor:help;
-    background:radial-gradient(circle at 50% 35%,#1e2a4d,var(--navy));
-    border:1px solid rgba(109,78,255,.35);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;
-    box-shadow:0 12px 26px -12px rgba(20,28,52,.6)}
+  .logo-badge{width:84px;height:84px;border-radius:20px;display:grid;place-items:center;cursor:help;background:radial-gradient(circle at 50% 35%,#1e2a4d,var(--navy));border:1px solid rgba(109,78,255,.35);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s;box-shadow:0 12px 26px -12px rgba(20,28,52,.6)}
   .logo-badge img{width:60px;height:60px;filter:drop-shadow(0 0 10px rgba(0,217,184,.5))}
   .logo-badge:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 16px 34px -12px rgba(109,78,255,.55)}
-
-  /* Grima hover card (light) */
-  .grima-card{position:absolute;top:98px;left:0;width:430px;z-index:60;opacity:0;visibility:hidden;
-    transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s;
-    background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px;
-    box-shadow:0 40px 90px -34px rgba(40,44,90,.45)}
+  .grima-card{position:absolute;top:98px;left:0;width:430px;z-index:60;opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .3s,transform .3s,visibility .3s;background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px 24px;box-shadow:0 40px 90px -34px rgba(40,44,90,.45)}
   .logo-zone:hover .grima-card,.grima-card.open{opacity:1;visibility:visible;transform:translateY(0)}
-  .grima-card::before{content:"";position:absolute;top:-8px;left:36px;width:16px;height:16px;rotate:45deg;
-    background:#fff;border-left:1px solid var(--line);border-top:1px solid var(--line)}
+  .grima-card::before{content:"";position:absolute;top:-8px;left:36px;width:16px;height:16px;rotate:45deg;background:#fff;border-left:1px solid var(--line);border-top:1px solid var(--line)}
   .gc-head{display:flex;align-items:center;gap:14px;margin-bottom:12px}
   .gc-head .gi{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:var(--navy)}
   .gc-head .gi img{width:36px;height:36px;filter:drop-shadow(0 0 6px rgba(0,217,184,.5))}
@@ -53,46 +34,30 @@
   .gc-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:14px}
   .gc-cols h5{font-family:'Orbitron';font-size:10px;letter-spacing:2px;color:var(--purple-d);margin-bottom:10px}
   .eye{display:flex;gap:9px;margin-bottom:9px}
-  .eye .n{width:20px;height:20px;border-radius:50%;flex:none;display:grid;place-items:center;
-    font-family:'Orbitron';font-size:10px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--amber),#ff8f5e)}
-  .eye b{display:block;font-size:13px;color:var(--ink);line-height:1.2}
-  .eye i{font-size:11px;color:var(--muted);font-style:normal}
+  .eye .n{width:20px;height:20px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:'Orbitron';font-size:10px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--amber),#ff8f5e)}
+  .eye b{display:block;font-size:13px;color:var(--ink);line-height:1.2}.eye i{font-size:11px;color:var(--muted);font-style:normal}
   .gc-foot{font-size:12px;color:var(--muted);font-style:italic;text-align:center;margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
-
   .htitle{flex:1;min-width:270px}
   .kicker{font-family:'Orbitron';font-size:11px;letter-spacing:4px;color:var(--teal);text-transform:uppercase;margin-bottom:7px}
-  h1{font-family:'Orbitron';font-weight:900;font-size:clamp(24px,3vw,34px);line-height:1.05;letter-spacing:.5px;
-    background:linear-gradient(90deg,var(--ink),var(--purple) 62%,var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-family:'Orbitron';font-weight:900;font-size:clamp(24px,3vw,34px);line-height:1.05;letter-spacing:.5px;background:linear-gradient(90deg,var(--ink),var(--purple) 62%,var(--teal));-webkit-background-clip:text;background-clip:text;color:transparent}
   .hsub{color:var(--muted);font-size:14px;margin-top:8px}
   .hmeta{display:flex;flex-direction:column;gap:9px;align-items:flex-end}
-  .badge{font-family:'Orbitron';font-size:12px;letter-spacing:2px;padding:9px 15px;border-radius:11px;
-    border:1px solid rgba(11,184,154,.28);background:rgba(11,184,154,.08);color:var(--teal);white-space:nowrap}
+  .badge{font-family:'Orbitron';font-size:12px;letter-spacing:2px;padding:9px 15px;border-radius:11px;border:1px solid rgba(11,184,154,.28);background:rgba(11,184,154,.08);color:var(--teal);white-space:nowrap}
   .badge.alt{border-color:rgba(109,78,255,.28);background:rgba(109,78,255,.08);color:var(--purple-d)}
-
-  .sec{font-family:'Orbitron';font-size:12px;letter-spacing:3px;color:var(--muted2);text-transform:uppercase;
-    margin:30px 4px 14px;display:flex;align-items:center;gap:12px}
+  .sec{font-family:'Orbitron';font-size:12px;letter-spacing:3px;color:var(--muted2);text-transform:uppercase;margin:30px 4px 14px;display:flex;align-items:center;gap:12px}
   .sec::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent)}
-
-  /* ---------- KPI ---------- */
   .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;position:relative;overflow:hidden;
-    box-shadow:0 8px 22px -16px rgba(40,44,90,.35);transition:transform .25s,box-shadow .25s}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;position:relative;overflow:hidden;box-shadow:0 8px 22px -16px rgba(40,44,90,.35);transition:transform .25s,box-shadow .25s}
   .kpi:hover{transform:translateY(-3px);box-shadow:0 16px 30px -18px rgba(40,44,90,.45)}
   .kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--purple)}
-  .kpi.teal::before{background:var(--teal)}.kpi.green::before{background:var(--green)}
-  .kpi.red::before{background:var(--red)}.kpi.amber::before{background:var(--amber)}
+  .kpi.teal::before{background:var(--teal)}.kpi.green::before{background:var(--green)}.kpi.red::before{background:var(--red)}.kpi.amber::before{background:var(--amber)}
   .kpi .lbl{font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-weight:600}
   .kpi .val{font-family:'Orbitron';font-weight:700;font-size:31px;margin-top:12px;line-height:1;color:var(--ink)}
   .kpi.red .val{color:var(--red)}.kpi.green .val{color:var(--green)}
-  .kpi .sub{font-size:12px;color:var(--muted);margin-top:9px}
-  .kpi .sub b{color:var(--ink)}
-
-  .grid{display:grid;gap:16px}
-  .g-2{grid-template-columns:1.12fr .88fr}.g-2b{grid-template-columns:1fr 1fr}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;
-    box-shadow:0 8px 24px -18px rgba(40,44,90,.35)}
-  .card h3{font-family:'Orbitron';font-weight:600;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;
-    color:var(--ink);margin-bottom:4px;display:flex;align-items:center;gap:10px}
+  .kpi .sub{font-size:12px;color:var(--muted);margin-top:9px}.kpi .sub b{color:var(--ink)}
+  .grid{display:grid;gap:16px}.g-2{grid-template-columns:1.12fr .88fr}.g-2b{grid-template-columns:1fr 1fr}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px;box-shadow:0 8px 24px -18px rgba(40,44,90,.35)}
+  .card h3{font-family:'Orbitron';font-weight:600;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);margin-bottom:4px;display:flex;align-items:center;gap:10px}
   .card h3 .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 8px rgba(11,184,154,.6)}
   .card .note{font-size:12.5px;color:var(--muted);margin-bottom:16px}
   .chart-box{position:relative;height:280px}.chart-box.tall{height:320px}
@@ -100,73 +65,99 @@
   .doughnut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
   .doughnut-center .big{font-family:'Orbitron';font-weight:900;font-size:40px;color:var(--green)}
   .doughnut-center .cap{font-size:11px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px}
-
   .split{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
   .mini{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:15px}
   .mini .m-lbl{font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase}
   .mini .m-val{font-family:'Orbitron';font-weight:700;font-size:25px;margin-top:6px}
-  .mini.falt .m-val{color:var(--red)}.mini.sob .m-val{color:var(--amber)}
-  .mini .m-sub{font-size:11px;color:var(--muted);margin-top:5px}
+  .mini.falt .m-val{color:var(--red)}.mini.sob .m-val{color:var(--amber)}.mini .m-sub{font-size:11px;color:var(--muted);margin-top:5px}
 
+  /* FILTERS */
+  .filterbar{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+  .fgroup{display:flex;flex-direction:column;gap:6px}
+  .fgroup label{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-family:'Orbitron'}
+  select,.search{font-family:'Exo 2';font-size:14px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;outline:none;transition:border-color .2s}
+  select:focus,.search:focus{border-color:var(--purple)}
+  .search{min-width:220px}
+  .pills{display:flex;gap:8px}
+  .fpill{font-family:'Orbitron';font-size:11px;letter-spacing:.5px;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:all .2s}
+  .fpill.on{background:var(--purple);color:#fff;border-color:var(--purple);box-shadow:0 6px 16px -8px rgba(109,78,255,.6)}
+  .fpill.on.falt{background:var(--red);border-color:var(--red)}.fpill.on.sob{background:var(--amber);border-color:var(--amber)}
+  .freset{margin-left:auto;font-family:'Orbitron';font-size:11px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--muted);cursor:pointer}
+  .freset:hover{color:var(--purple);border-color:var(--purple)}
+  .resbar{display:flex;gap:22px;flex-wrap:wrap;margin:16px 0;padding:14px 18px;background:var(--bg2);border-radius:12px;border:1px solid var(--line)}
+  .resbar .r{font-size:13px;color:var(--muted)}.resbar .r b{font-family:'Orbitron';font-size:18px;color:var(--ink);display:block;margin-top:2px}
+  .resbar .r.f b{color:var(--red)}.resbar .r.s b{color:#c47f0d}
+  .tablewrap{max-height:420px;overflow:auto;border-radius:12px;border:1px solid var(--line)}
   table{width:100%;border-collapse:collapse;font-size:13px}
-  th{text-align:left;font-family:'Orbitron';font-weight:500;font-size:10px;letter-spacing:1.2px;color:var(--muted2);
-    text-transform:uppercase;padding:10px 8px;border-bottom:2px solid var(--line)}
-  td{padding:10px 8px;border-bottom:1px solid var(--line2);color:var(--txt)}
+  thead th{position:sticky;top:0;background:#fff;z-index:2}
+  th{text-align:left;font-family:'Orbitron';font-weight:500;font-size:10px;letter-spacing:1.2px;color:var(--muted2);text-transform:uppercase;padding:11px 10px;border-bottom:2px solid var(--line);cursor:pointer;user-select:none}
+  th.sortable:hover{color:var(--purple)}
+  td{padding:10px;border-bottom:1px solid var(--line2);color:var(--txt)}
   tr:hover td{background:var(--bg2)}
   td.code{font-family:'Orbitron';font-size:11px;color:var(--purple-d);letter-spacing:.5px}
-  td.desc{color:var(--muted);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  td.desc{color:var(--muted);max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .pill{font-family:'Orbitron';font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;display:inline-block}
   .pill.r{background:rgba(242,68,91,.12);color:var(--red)}.pill.a{background:rgba(245,166,35,.14);color:#c47f0d}
-  .tag{font-size:10px;letter-spacing:1px;padding:2px 8px;border-radius:6px;background:rgba(11,184,154,.1);color:var(--teal);text-transform:uppercase}
-  .tag.a{background:rgba(245,166,35,.14);color:#c47f0d}
+  .ktag{font-family:'Orbitron';font-size:9px;letter-spacing:1px;padding:3px 8px;border-radius:6px}
+  .ktag.falt{background:rgba(242,68,91,.1);color:var(--red)}.ktag.sob{background:rgba(245,166,35,.12);color:#c47f0d}
+  .empty{padding:40px;text-align:center;color:var(--muted2);font-style:italic}
+
+  /* AI PANEL */
+  .ai-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+  .ai-badge{font-family:'Orbitron';font-size:10px;letter-spacing:1.5px;padding:5px 11px;border-radius:20px;background:linear-gradient(135deg,var(--purple),var(--teal));color:#fff}
+  .recs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .rec{display:flex;gap:13px;padding:15px 16px;border-radius:13px;background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--purple)}
+  .rec.crit{border-left-color:var(--red);background:rgba(242,68,91,.04)}
+  .rec.warn{border-left-color:var(--amber);background:rgba(245,166,35,.05)}
+  .rec.info{border-left-color:var(--teal)}
+  .rec.good{border-left-color:var(--green);background:rgba(18,185,129,.04)}
+  .rec .ico{font-size:20px;flex:none;line-height:1.2}
+  .rec .rt{font-family:'Orbitron';font-size:12px;color:var(--ink);margin-bottom:4px;font-weight:600}
+  .rec .rx{font-size:12.5px;color:var(--txt);line-height:1.5}
+  .rec .rx b{color:var(--ink)}
+  .ai-cta{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:18px;padding-top:18px;border-top:1px dashed var(--line)}
+  .btn-ai{font-family:'Orbitron';font-size:12px;letter-spacing:.5px;padding:12px 20px;border-radius:11px;border:none;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--purple),var(--purple-d));box-shadow:0 10px 24px -10px rgba(109,78,255,.6);transition:transform .2s,box-shadow .2s;display:flex;align-items:center;gap:8px}
+  .btn-ai:hover{transform:translateY(-2px)}.btn-ai:disabled{opacity:.6;cursor:wait;transform:none}
+  .ai-hint{font-size:11.5px;color:var(--muted2)}
+  .ai-out{margin-top:16px;padding:18px 20px;border-radius:13px;background:linear-gradient(160deg,#f6f4ff,#f0fbf8);border:1px solid rgba(109,78,255,.2);font-size:13.5px;line-height:1.65;color:var(--txt);white-space:pre-wrap;display:none}
+  .ai-out.show{display:block}
+  .ai-out h4{font-family:'Orbitron';font-size:12px;color:var(--purple-d);margin-bottom:8px;letter-spacing:1px}
+  .spin{width:15px;height:15px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite}
+  @keyframes sp{to{transform:rotate(360deg)}}
 
   .obs-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:22px}
   .obs-lbl{font-size:11px;letter-spacing:1.5px;color:var(--muted2);text-transform:uppercase;margin-bottom:12px;font-family:'Orbitron'}
-  .obs-item{display:flex;gap:10px;align-items:center;padding:11px 13px;border-radius:10px;
-    background:rgba(242,68,91,.05);border:1px solid rgba(242,68,91,.16);margin-bottom:9px}
+  .obs-item{display:flex;gap:10px;align-items:center;padding:11px 13px;border-radius:10px;background:rgba(242,68,91,.05);border:1px solid rgba(242,68,91,.16);margin-bottom:9px}
   .obs-item.warn{background:rgba(245,166,35,.06);border-color:rgba(245,166,35,.2)}
-  .obs-item .oc{font-family:'Orbitron';font-size:11px;color:var(--purple-d)}
-  .obs-item .od{font-size:12px;color:var(--muted)}
-  .obs-item .ox{margin-left:auto;font-size:10px;color:var(--muted);letter-spacing:1px}
+  .obs-item .oc{font-family:'Orbitron';font-size:11px;color:var(--purple-d)}.obs-item .od{font-size:12px;color:var(--muted)}.obs-item .ox{margin-left:auto;font-size:10px;color:var(--muted);letter-spacing:1px}
   .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{font-family:'Orbitron';font-size:11px;padding:7px 11px;border-radius:8px;background:rgba(18,185,129,.07);
-    border:1px solid rgba(18,185,129,.2);color:#0e9668}
-
-  footer{margin-top:32px;padding:20px 26px;border-radius:14px;border:1px solid var(--line);
-    background:var(--card);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;
-    box-shadow:0 8px 24px -18px rgba(40,44,90,.3)}
-  footer .who{font-size:13px;color:var(--muted)}
-  footer .who b{color:var(--ink);font-family:'Orbitron';font-weight:500;letter-spacing:.4px;font-size:12px}
-  footer .brand{display:flex;align-items:center;gap:10px;font-family:'Orbitron';font-size:13px;letter-spacing:3px;color:var(--purple-d)}
-  footer .brand img{width:26px;height:26px}
-
-  @media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}.g-2,.g-2b{grid-template-columns:1fr}.obs-grid{grid-template-columns:1fr}.grima-card{width:340px}}
-  @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.wrap{padding:18px}.grima-card{width:280px}}
+  .chip{font-family:'Orbitron';font-size:11px;padding:7px 11px;border-radius:8px;background:rgba(18,185,129,.07);border:1px solid rgba(18,185,129,.2);color:#0e9668;cursor:pointer;transition:all .2s}
+  .chip:hover{background:rgba(18,185,129,.16)}
+  footer{margin-top:32px;padding:20px 26px;border-radius:14px;border:1px solid var(--line);background:var(--card);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;box-shadow:0 8px 24px -18px rgba(40,44,90,.3)}
+  footer .who{font-size:13px;color:var(--muted)}footer .who b{color:var(--ink);font-family:'Orbitron';font-weight:500;letter-spacing:.4px;font-size:12px}
+  footer .brand{display:flex;align-items:center;gap:10px;font-family:'Orbitron';font-size:13px;letter-spacing:3px;color:var(--purple-d)}footer .brand img{width:26px;height:26px}
+  @media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}.g-2,.g-2b{grid-template-columns:1fr}.obs-grid,.recs{grid-template-columns:1fr}.grima-card{width:340px}}
+  @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}.wrap{padding:18px}.grima-card{width:280px}.freset{margin-left:0}}
 </style>
 </head>
 <body>
 <div class="wrap">
-
   <header>
     <div class="logo-zone">
       <div class="logo-badge"><img src="data:image/png;base64,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" alt="Grima"></div>
       <div class="grima-card">
-        <div class="gc-head">
-          <div class="gi"><img src="data:image/png;base64,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" alt="Grima"></div>
-          <div><div class="gc-title">Grima · El dragón caído</div><div class="gc-sub">El que todo lo observa</div></div>
-        </div>
+        <div class="gc-head"><div class="gi"><img src="data:image/png;base64,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" alt="Grima"></div>
+          <div><div class="gc-title">Grima · El dragón caído</div><div class="gc-sub">El que todo lo observa</div></div></div>
         <div class="gc-lore">Grima es un dragón caído, un demonio exiliado y condenado a la soledad. De esa condena nació su don: seis ojos que no descansan, que lo ven todo a la vez para que nada vuelva a tomarlo por sorpresa.</div>
         <div class="gc-cols">
           <div><h5>DOMINAN EL TIEMPO</h5>
             <div class="eye"><span class="n">1</span><div><b>Pasado</b><i>lo que ya ocurrió</i></div></div>
             <div class="eye"><span class="n">2</span><div><b>Presente</b><i>lo que pasa ahora</i></div></div>
-            <div class="eye"><span class="n">3</span><div><b>Futuro</b><i>hacia dónde va todo</i></div></div>
-          </div>
+            <div class="eye"><span class="n">3</span><div><b>Futuro</b><i>hacia dónde va todo</i></div></div></div>
           <div><h5>DOMINAN LA ACCIÓN</h5>
             <div class="eye"><span class="n">4</span><div><b>Estrategia</b><i>trazar el rumbo</i></div></div>
             <div class="eye"><span class="n">5</span><div><b>Oportunidades</b><i>ver lo que otros no</i></div></div>
-            <div class="eye"><span class="n">6</span><div><b>Amenazas</b><i>detectar el riesgo</i></div></div>
-          </div>
+            <div class="eye"><span class="n">6</span><div><b>Amenazas</b><i>detectar el riesgo</i></div></div></div>
         </div>
         <div class="gc-foot">Seis ojos para ver todo el negocio a la vez y decidir con ventaja.</div>
       </div>
@@ -176,10 +167,7 @@
       <h1>INVENTARIO AREQUIPA 2026</h1>
       <div class="hsub">Stock Físico vs Teórico &nbsp;·&nbsp; Repuestos de maquinaria pesada &nbsp;·&nbsp; Peru Tractor S.R.L.</div>
     </div>
-    <div class="hmeta">
-      <span class="badge">07 MAY 2026</span>
-      <span class="badge alt">1,687 SKU · 28 MARCAS</span>
-    </div>
+    <div class="hmeta"><span class="badge">07 MAY 2026</span><span class="badge alt">1,687 SKU · 28 MARCAS</span></div>
   </header>
 
   <div class="sec">Indicadores clave</div>
@@ -194,129 +182,190 @@
 
   <div class="sec">Conciliación del conteo</div>
   <div class="grid g-2">
-    <div class="card">
-      <h3><span class="dot"></span>Estado de la conciliación</h3>
+    <div class="card"><h3><span class="dot"></span>Estado de la conciliación</h3>
       <div class="note">Distribución de los 1,687 SKU según el resultado del conteo físico</div>
-      <div class="doughnut-wrap"><canvas id="donut"></canvas>
-        <div class="doughnut-center"><div class="big">92.1%</div><div class="cap">Exactitud</div></div></div>
-    </div>
-    <div class="card">
-      <h3><span class="dot"></span>Faltantes vs Sobrantes</h3>
+      <div class="doughnut-wrap"><canvas id="donut"></canvas><div class="doughnut-center"><div class="big">92.1%</div><div class="cap">Exactitud</div></div></div></div>
+    <div class="card"><h3><span class="dot"></span>Faltantes vs Sobrantes</h3>
       <div class="note">Ítems y unidades con desviación respecto al sistema</div>
       <div class="chart-box" style="height:200px"><canvas id="fs"></canvas></div>
-      <div class="split">
-        <div class="mini falt"><div class="m-lbl">Faltantes</div><div class="m-val">96</div><div class="m-sub">320 unidades por debajo</div></div>
-        <div class="mini sob"><div class="m-lbl">Sobrantes</div><div class="m-val">32</div><div class="m-sub">72 unidades por encima</div></div>
-      </div>
-    </div>
+      <div class="split"><div class="mini falt"><div class="m-lbl">Faltantes</div><div class="m-val">96</div><div class="m-sub">320 unidades por debajo</div></div>
+        <div class="mini sob"><div class="m-lbl">Sobrantes</div><div class="m-val">32</div><div class="m-sub">72 unidades por encima</div></div></div></div>
   </div>
 
   <div class="sec">Análisis por marca</div>
   <div class="grid g-2b">
-    <div class="card">
-      <h3><span class="dot"></span>Top marcas por SKU</h3>
-      <div class="note">Las 8 marcas con mayor número de códigos en ALM03 (de 28 totales)</div>
-      <div class="chart-box tall"><canvas id="brands"></canvas></div>
+    <div class="card"><h3><span class="dot"></span>Top marcas por SKU</h3><div class="note">Las 8 marcas con mayor número de códigos en ALM03 (de 28 totales)</div><div class="chart-box tall"><canvas id="brands"></canvas></div></div>
+    <div class="card"><h3><span class="dot"></span>Exactitud por marca</h3><div class="note">% de SKU cuadrados por marca — DIRON y TGW concentran el riesgo</div><div class="chart-box tall"><canvas id="acc"></canvas></div></div>
+  </div>
+
+  <div class="sec">Explorador de diferencias</div>
+  <div class="card">
+    <div class="filterbar">
+      <div class="fgroup"><label>Marca</label><select id="fMarca"><option value="">Todas las marcas</option></select></div>
+      <div class="fgroup"><label>Tipo</label><div class="pills">
+        <button class="fpill on" data-k="">Todos</button>
+        <button class="fpill" data-k="falt">Faltantes</button>
+        <button class="fpill" data-k="sob">Sobrantes</button></div></div>
+      <div class="fgroup"><label>Buscar código o descripción</label><input class="search" id="fSearch" placeholder="Ej. 6Y2750, SEAL, NUT..."></div>
+      <button class="freset" id="fReset">↺ Limpiar</button>
     </div>
-    <div class="card">
-      <h3><span class="dot"></span>Exactitud por marca</h3>
-      <div class="note">% de SKU cuadrados por marca — DIRON y TGW concentran el riesgo</div>
-      <div class="chart-box tall"><canvas id="acc"></canvas></div>
+    <div class="resbar">
+      <div class="r">Ítems mostrados<b id="rItems">128</b></div>
+      <div class="r f">Faltantes<b id="rFalt">96 · 320 und</b></div>
+      <div class="r s">Sobrantes<b id="rSob">32 · 72 und</b></div>
+      <div class="r">Impacto neto<b id="rNet">−248 und</b></div>
+    </div>
+    <div class="tablewrap"><table>
+      <thead><tr><th class="sortable" data-s="c">Código</th><th class="sortable" data-s="d">Descripción</th><th class="sortable" data-s="m">Marca</th><th class="sortable" data-s="u">Ubic.</th><th class="sortable" data-s="t">Teó.</th><th class="sortable" data-s="f">Fís.</th><th class="sortable" data-s="x">Dif.</th><th>Tipo</th></tr></thead>
+      <tbody id="dbody"></tbody></table>
+      <div class="empty" id="empty" style="display:none">Sin resultados para el filtro actual.</div>
     </div>
   </div>
 
-  <div class="sec">Detalle de diferencias</div>
-  <div class="grid g-2b">
-    <div class="card">
-      <h3><span class="dot"></span>Top 10 faltantes <span class="tag">prioridad</span></h3>
-      <div class="note">Mayores diferencias por debajo del stock teórico</div>
-      <table id="tfalt"><thead><tr><th>Código</th><th>Descripción</th><th>Marca</th><th>Teó.</th><th>Fís.</th><th>Dif.</th></tr></thead><tbody></tbody></table>
+  <div class="sec">Recomendaciones IA</div>
+  <div class="card">
+    <div class="ai-head"><h3 style="margin:0"><span class="dot"></span>Recomendaciones inteligentes <span class="ai-badge">⬡ GRIMA IA</span></h3>
+      <div class="ai-hint">Se recalculan según el filtro activo</div></div>
+    <div class="recs" id="recs" style="margin-top:16px"></div>
+    <div class="ai-cta">
+      <button class="btn-ai" id="btnAI"><span>⬡</span> Generar análisis ejecutivo con IA</button>
+      <span class="ai-hint">Redacta un resumen para gerencia con Claude a partir de los datos filtrados.</span>
     </div>
-    <div class="card">
-      <h3><span class="dot"></span>Top sobrantes <span class="tag a">revisar</span></h3>
-      <div class="note">Existencias físicas por encima del sistema</div>
-      <table id="tsob"><thead><tr><th>Código</th><th>Descripción</th><th>Marca</th><th>Teó.</th><th>Fís.</th><th>Dif.</th></tr></thead><tbody></tbody></table>
-    </div>
+    <div class="ai-out" id="aiOut"></div>
   </div>
 
   <div class="sec">Observaciones del conteo</div>
-  <div class="grid">
-    <div class="card">
-      <div class="obs-grid">
-        <div>
-          <div class="obs-lbl">Producto en mal estado (2)</div>
-          <div class="obs-item"><span class="oc">1R1807DON</span><span class="od">Filter Oil P551807</span><span class="ox">MALOGRADO</span></div>
-          <div class="obs-item warn"><span class="oc">6H8021CTP</span><span class="od">Body (5L4994)</span><span class="ox">1 UND ROTO</span></div>
-        </div>
-        <div>
-          <div class="obs-lbl">No figuran en inventario (15) — sobrante no registrado</div>
-          <div class="chips">
-            <span class="chip">1070265CTP</span><span class="chip">1096279CTP</span><span class="chip">1661496CTP</span>
-            <span class="chip">1990700</span><span class="chip">1P3702CTP</span><span class="chip">2323405ARC</span>
-            <span class="chip">2295153FP</span><span class="chip">2961498CAT</span><span class="chip">2W3679WOL</span>
-            <span class="chip">4W0699WOL</span><span class="chip">4461526CTP</span><span class="chip">4N1151</span>
-            <span class="chip">4L9564CAT</span><span class="chip">7J9108CTP</span><span class="chip">9X4597CTP</span>
-          </div>
-          <div style="font-size:11.5px;color:var(--muted2);margin-top:12px">2 con nota adicional: <b style="color:#c47f0d">1990700</b> pendiente NC · <b style="color:var(--red)">2295153FP</b> mal estado</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="grid"><div class="card"><div class="obs-grid">
+    <div><div class="obs-lbl">Producto en mal estado (2)</div>
+      <div class="obs-item"><span class="oc">1R1807DON</span><span class="od">Filter Oil P551807</span><span class="ox">MALOGRADO</span></div>
+      <div class="obs-item warn"><span class="oc">6H8021CTP</span><span class="od">Body (5L4994)</span><span class="ox">1 UND ROTO</span></div></div>
+    <div><div class="obs-lbl">No figuran en inventario (15) — sobrante no registrado</div>
+      <div class="chips">
+        <span class="chip">1070265CTP</span><span class="chip">1096279CTP</span><span class="chip">1661496CTP</span><span class="chip">1990700</span><span class="chip">1P3702CTP</span><span class="chip">2323405ARC</span><span class="chip">2295153FP</span><span class="chip">2961498CAT</span><span class="chip">2W3679WOL</span><span class="chip">4W0699WOL</span><span class="chip">4461526CTP</span><span class="chip">4N1151</span><span class="chip">4L9564CAT</span><span class="chip">7J9108CTP</span><span class="chip">9X4597CTP</span></div>
+      <div style="font-size:11.5px;color:var(--muted2);margin-top:12px">2 con nota: <b style="color:#c47f0d">1990700</b> pendiente NC · <b style="color:var(--red)">2295153FP</b> mal estado</div></div>
+  </div></div></div>
 
-  <footer>
-    <div class="who">Elaborado por <b>Alexis Brian Ramírez Ramírez · CEO · Negocios Internacionales · Administrador de Empresas · Developer</b></div>
-    <div class="brand"><img src="data:image/png;base64,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" alt="Grima">VERONIX</div>
-  </footer>
+  <footer><div class="who">Elaborado por <b>Alexis Brian Ramírez Ramírez · CEO · Negocios Internacionales · Administrador de Empresas · Developer</b></div>
+    <div class="brand"><img src="data:image/png;base64,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" alt="Grima">VERONIX</div></footer>
 </div>
 
 <script>
+const DATA = {"diffs": [{"c": "1090885ACR", "d": "SEAL GRP", "m": "AMERICAN CRANE", "u": "1A", "t": 5, "f": 3, "x": 2, "k": "falt"}, {"c": "1P3705WOL", "d": "SEAL RECTANGULAR(6J3650)", "m": "WORLD GASKET", "u": "1A3", "t": 8, "f": 5, "x": 3, "k": "falt"}, {"c": "1P3707WOL", "d": "SEAL RECTANGULAR", "m": "WORLD GASKET", "u": "1A3", "t": 17, "f": 16, "x": 1, "k": "falt"}, {"c": "1P7363CTP", "d": "SEAL", "m": "CTP", "u": "1A3", "t": 13, "f": 11, "x": 2, "k": "falt"}, {"c": "2085235CTP", "d": "TIP IMPACT", "m": "CTP", "u": "CJ3", "t": 11, "f": 6, "x": 5, "k": "falt"}, {"c": "2J6274CTP", "d": "SEAL-O-RING 6V0913,7X4805", "m": "CTP", "u": "2A2", "t": 4, "f": 2, "x": 2, "k": "falt"}, {"c": "2M9780WOL", "d": "SEAL O RING", "m": "WORLD GASKET", "u": "2A2", "t": 16, "f": 15, "x": 1, "k": "falt"}, {"c": "3G9193CTP", "d": "SEAL-LIP TYPE", "m": "CTP", "u": "3A3", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "3J1907WOL", "d": "SEAL(3D7455,3K7508,2C1951", "m": "WORLD GASKET", "u": "3A2", "t": 11, "f": 9, "x": 2, "k": "falt"}, {"c": "3S7781WOL", "d": "GASKET", "m": "WORLD GASKET", "u": "14D3", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "4L7711WOL", "d": "O RING", "m": "WORLD GASKET", "u": "4A6", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "4S9006CTP", "d": "SEAL-PACKING", "m": "CTP", "u": "4B1", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "6H8021CTP", "d": "BODY (5L4994-5A4903)", "m": "CTP", "u": "6G", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "6Y0359CTP", "d": "TIP RIPPER", "m": "CTP", "u": "CJ1", "t": 8, "f": 7, "x": 1, "k": "falt"}, {"c": "7G4332WOL", "d": "STOPPER RUBBER(6Y0454)", "m": "WORLD GASKET", "u": "", "t": 30, "f": 28, "x": 2, "k": "falt"}, {"c": "7J2036CTP", "d": "SEAL", "m": "CTP", "u": "7C3", "t": 8, "f": 7, "x": 1, "k": "falt"}, {"c": "7W2059CTP", "d": "EMPAQUE CULATA(4W0045)(7C1599 )3208", "m": "CTP", "u": "", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "7W9143WOL", "d": "SEAL-IN VA", "m": "WORLD GASKET", "u": "7B3", "t": 16, "f": 4, "x": 12, "k": "falt"}, {"c": "8M4390WOL", "d": "SEAL O'RING 966 C", "m": "WORLD GASKET", "u": "8A1", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "8M4437CTP", "d": "SEAL(8T7161)", "m": "CTP", "u": "8A1", "t": 26, "f": 24, "x": 2, "k": "falt"}, {"c": "8M4987CTP", "d": "SEAL O RING", "m": "CTP", "u": "8A1", "t": 12, "f": 11, "x": 1, "k": "falt"}, {"c": "8M8283WOL", "d": "SEAL-O-RING(8T8966)5P3108", "m": "WORLD GASKET", "u": "8A1", "t": 18, "f": 16, "x": 2, "k": "falt"}, {"c": "9G1642CTP", "d": "STOPPER", "m": "CTP", "u": "9A4", "t": 83, "f": 82, "x": 1, "k": "falt"}, {"c": "9M4849WOL", "d": "SEAL-O-RING", "m": "WORLD GASKET", "u": "9A1", "t": 18, "f": 16, "x": 2, "k": "falt"}, {"c": "9M5477CTP", "d": "BEARING", "m": "CTP", "u": "9B4", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "9N4302CTP", "d": "TIP LONG", "m": "CTP", "u": "CJ3", "t": 5, "f": 4, "x": 1, "k": "falt"}, {"c": "9X7680CTP", "d": "SEAL O RING", "m": "CTP", "u": "4A5", "t": 3, "f": 1, "x": 2, "k": "falt"}, {"c": "1070268CTP", "d": "INSER VALVE IN (7N4448)", "m": "CTP", "u": "1A6", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "1140468DIR", "d": "PIN G.E.T (8E0468)", "m": "DIRON", "u": "10D", "t": 24, "f": 16, "x": 8, "k": "falt"}, {"c": "1154120WOL", "d": "CAMBIA 2223910", "m": "WORLD GASKET", "u": "1B4", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "1167409DIR", "d": "RETAINER A (8E8409)", "m": "DIRON", "u": "10D", "t": 27, "f": 23, "x": 4, "k": "falt"}, {"c": "1193204CTP", "d": "ADAPTER", "m": "CTP", "u": "CJ3", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "1324766DIR", "d": "PIN-GET(9J2308,1073308)", "m": "DIRON", "u": "10B", "t": 30, "f": 13, "x": 17, "k": "falt"}, {"c": "1334995CTP", "d": "GASKET-HEA", "m": "CTP", "u": "", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "1482903CTP", "d": "SEAL-O-RIN", "m": "CTP", "u": "1A6", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "1495733CTP", "d": "RETAINER A (3G9609,8E6259)", "m": "CTP", "u": "", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "1504741TGW", "d": "BOLT-TRACK", "m": "TGW", "u": "P10N", "t": 141, "f": 130, "x": 11, "k": "falt"}, {"c": "1592953CTP", "d": "PERNO", "m": "CTP", "u": "10G", "t": 45, "f": 44, "x": 1, "k": "falt"}, {"c": "1661497CGR", "d": "SEAL-LIP T", "m": "GHINASSI", "u": "1A1", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "1D4610DIR", "d": "CAP SCREW", "m": "DIRON", "u": "10J", "t": 44, "f": 42, "x": 2, "k": "falt"}, {"c": "1D4629DIR", "d": "CAP SCREW", "m": "DIRON", "u": "11C", "t": 8, "f": 4, "x": 4, "k": "falt"}, {"c": "1R0756CAT", "d": "FILTER (1R0718, 8N9850)", "m": "CATERPILLAR", "u": "V2A", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "2097465WOL", "d": "SEAL 4431363", "m": "WORLD GASKET", "u": "2A3", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "2287096CTP", "d": "SEAL", "m": "CTP", "u": "2A3", "t": 3, "f": 2, "x": 1, "k": "falt"}, {"c": "2777089CGR", "d": "SHAFT AS 4W0250", "m": "GHINASSI", "u": "2H", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "2D6392ACR", "d": "SEAL-O-RING(2L3463,7L4557", "m": "AMERICAN CRANE", "u": "2A2", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "2J3505TGW", "d": "NUT-7/8\"", "m": "TGW", "u": "10I", "t": 112, "f": 82, "x": 30, "k": "falt"}, {"c": "2W1707FP", "d": "RING", "m": "FP DIESEL", "u": "2H", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "2W1708FP", "d": "RING INTER", "m": "FP DIESEL", "u": "2H", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "3B4510CTP", "d": "LOCKWASHER", "m": "CTP", "u": "10G", "t": 9, "f": 0, "x": 9, "k": "falt"}, {"c": "3B4514CTP", "d": "LOCK WASHER (8T4105)", "m": "CTP", "u": "10G", "t": 10, "f": 0, "x": 10, "k": "falt"}, {"c": "3E4302CTP", "d": "SCREW", "m": "CTP", "u": "3B1", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "3J9703WOL", "d": "RING-WEAR", "m": "WORLD GASKET", "u": "5D1", "t": 4, "f": 3, "x": 1, "k": "falt"}, {"c": "3K0360CTP", "d": "SEAL-O-RING", "m": "CTP", "u": "3A3", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "3K5234CTP", "d": "WASHER", "m": "CTP", "u": "10G", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "3K9770CAT", "d": "NUT-1 1/4\"", "m": "CATERPILLAR", "u": "11B", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "4J4630WOL", "d": "RING", "m": "WORLD GASKET", "u": "5D2", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "4T5613WOL", "d": "RING WEAR", "m": "WORLD GASKET", "u": "5D2", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "4T6779WOL", "d": "RING", "m": "WORLD GASKET", "u": "5D1", "t": 4, "f": 2, "x": 2, "k": "falt"}, {"c": "5F3106WOL", "d": "SEAL (8F6499-9F3215)", "m": "WORLD GASKET", "u": "5A2", "t": 14, "f": 13, "x": 1, "k": "falt"}, {"c": "5J4773CTP", "d": "BOLT 3/4\" X 2 1/2\"", "m": "CTP", "u": "12E", "t": 5, "f": 1, "x": 4, "k": "falt"}, {"c": "5J8300WOL", "d": "SEAL U CUP (4214025)", "m": "WORLD GASKET", "u": "5B1", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "5K2595WOL", "d": "SEAL", "m": "WORLD GASKET", "u": "5B3", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "5K9090CTP", "d": "O RING", "m": "CTP", "u": "5A2", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "5M2057HIG", "d": "O RING", "m": "HIGH GASKET", "u": "5A2", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "5M2667WOL", "d": "GASKET CHAMBER", "m": "WORLD GASKET", "u": "5B2", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "5M2998CTP", "d": "RING ANTI EXTRUSION", "m": "CTP", "u": "5B1", "t": 2, "f": 1, "x": 1, "k": "falt"}, {"c": "5P8245CTP", "d": "WASHER-HAR 1/2", "m": "CTP", "u": "5B2", "t": 44, "f": 43, "x": 1, "k": "falt"}, {"c": "5P8249CPT", "d": "WASHER (ARANDELA ASTM 7/8)", "m": "CPT", "u": "10h", "t": 47, "f": 46, "x": 1, "k": "falt"}, {"c": "5P8361DIR", "d": "BOLT", "m": "DIRON", "u": "11E", "t": 5, "f": 4, "x": 1, "k": "falt"}, {"c": "5P8362DIR", "d": "NUT", "m": "DIRON", "u": "", "t": 46, "f": 45, "x": 1, "k": "falt"}, {"c": "6I0497FP", "d": "RING-PISTO", "m": "FP DIESEL", "u": "6B1", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "6V0937TGW", "d": "BOLT SPROCKET", "m": "TGW", "u": "12D", "t": 33, "f": 29, "x": 4, "k": "falt"}, {"c": "6V6923WOL", "d": "RING BACK", "m": "WORLD GASKET", "u": "6A2", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "6Y0846TGW", "d": "COD DUPLICADO", "m": "TGW", "u": "J,P8E", "t": 45, "f": 26, "x": 19, "k": "falt"}, {"c": "6Y2750CGR", "d": "WASHER B P/330BL PARA LA CADENA", "m": "GHINASSI", "u": "6B1", "t": 50, "f": 0, "x": 50, "k": "falt"}, {"c": "7C0307WOL", "d": "GASKET (4N0790)", "m": "WORLD GASKET", "u": "14D3", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "7C7431CGR", "d": "GASKET 7C9793", "m": "GHINASSI", "u": "14D3", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "7C7431CTP", "d": "GASKET 7C9793", "m": "CTP", "u": "14D3", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "7D8883CTP", "d": "SEAL", "m": "CTP", "u": "", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "7H3607TGW", "d": "NUT SPROCKET", "m": "TGW", "u": "I", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "7K9202WOL", "d": "SEAL LINK(5P8842)", "m": "WORLD GASKET", "u": "7D2", "t": 8, "f": 4, "x": 4, "k": "falt"}, {"c": "7W2398WOL", "d": "GASKET", "m": "WORLD GASKET", "u": "14D3", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "7X2454DIR", "d": "BOLT (4471723)", "m": "DIRON", "u": "12F", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "7X2575TGW", "d": "BOLT", "m": "TGW", "u": "12f", "t": 29, "f": 11, "x": 18, "k": "falt"}, {"c": "8C4436CAT", "d": "BOLT", "m": "CATERPILLAR", "u": "10N", "t": 34, "f": 32, "x": 2, "k": "falt"}, {"c": "8E6209DIR", "d": "RETAINER G", "m": "DIRON", "u": "10C", "t": 27, "f": 25, "x": 2, "k": "falt"}, {"c": "8H7521CTP", "d": "SEAL-O-RING(5H9841-8T7249", "m": "CTP", "u": "8A1", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "8N8796DISA", "d": "SERVICE GRP (7S9891)", "m": "DISA", "u": "MOS C1", "t": 6, "f": 0, "x": 6, "k": "falt"}, {"c": "8T4167CTP", "d": "WASHER", "m": "CTP", "u": "12A", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "8T6430DIR", "d": "BOLT", "m": "DIRON", "u": "12G", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "8T7584CTP", "d": "RING WEAR", "m": "CTP", "u": "5D3", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "8T9079ACR", "d": "BOLT PLOW", "m": "AMERICAN CRANE", "u": "12G", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "9R5828CGR", "d": "BEARING", "m": "GHINASSI", "u": "9B1", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "9X7547WOL", "d": "SEAL D8R", "m": "WORLD GASKET", "u": "9A1", "t": 1, "f": 0, "x": 1, "k": "falt"}, {"c": "9Y3595CTP", "d": "GASKET (1886126)", "m": "CTP", "u": "14D3", "t": 2, "f": 0, "x": 2, "k": "falt"}, {"c": "1090881ACR", "d": "SEAL GP (6Y5219)", "m": "AMERICAN CRANE", "u": "6H", "t": 1, "f": 2, "x": 1, "k": "sob"}, {"c": "1303139CTP", "d": "BRG-SLEEVE", "m": "CTP", "u": "15D", "t": 2, "f": 3, "x": 1, "k": "sob"}, {"c": "1368308DIR", "d": "G.E.T. PIN", "m": "DIRON", "u": "1C5", "t": 9, "f": 10, "x": 1, "k": "sob"}, {"c": "1757902CTP", "d": "SEAL-O-RIN", "m": "CTP", "u": "1A2", "t": 1, "f": 2, "x": 1, "k": "sob"}, {"c": "1793046WOL", "d": "SEAL-LIP T", "m": "WORLD GASKET", "u": "1B4", "t": 3, "f": 4, "x": 1, "k": "sob"}, {"c": "1P3704CTP", "d": "SEAL RECTAN(5J1357,6J3625", "m": "CTP", "u": "1A3", "t": 22, "f": 25, "x": 3, "k": "sob"}, {"c": "1P3704WOL", "d": "SEAL RECTAN(5J1357,6J3625", "m": "WORLD GASKET", "u": "1A3", "t": 7, "f": 8, "x": 1, "k": "sob"}, {"c": "1U0257CTP", "d": "ADAPTER(8J6656)", "m": "CTP", "u": "CJ6", "t": 6, "f": 7, "x": 1, "k": "sob"}, {"c": "1U3302PTCTP", "d": "TIP (PUNTA ABRASION J300)", "m": "CTP", "u": "CJ1", "t": 8, "f": 9, "x": 1, "k": "sob"}, {"c": "2005236CTP", "d": "INDICADOR (1W7550)", "m": "CTP", "u": "2G", "t": 1, "f": 2, "x": 1, "k": "sob"}, {"c": "2011235CTP", "d": "ADAPTER (2011234)", "m": "CTP", "u": "CJ3", "t": 2, "f": 3, "x": 1, "k": "sob"}, {"c": "2313538WOL", "d": "SEAL-WIPER (4J3515, 8C9134,1672459 )", "m": "WORLD GASKET", "u": "2A1", "t": 6, "f": 7, "x": 1, "k": "sob"}, {"c": "2385084CTP", "d": "SEAL-O-RIN", "m": "CTP", "u": "2A10", "t": 5, "f": 6, "x": 1, "k": "sob"}, {"c": "2M7876WOL", "d": "SEAL-VALVE GUIDE", "m": "WORLD GASKET", "u": "2A7", "t": 12, "f": 13, "x": 1, "k": "sob"}, {"c": "2S4078WOL", "d": "SEAL (8C7040)", "m": "WORLD GASKET", "u": "2A2", "t": 6, "f": 7, "x": 1, "k": "sob"}, {"c": "2S5301CTP", "d": "RING-SEAL", "m": "CTP", "u": "1I", "t": 2, "f": 3, "x": 1, "k": "sob"}, {"c": "3D2824CTP", "d": "SEAL-O RING", "m": "CTP", "u": "3A3", "t": 6, "f": 8, "x": 2, "k": "sob"}, {"c": "4J0521WOL", "d": "SEAL O RIN", "m": "WORLD GASKET", "u": "4A6", "t": 22, "f": 24, "x": 2, "k": "sob"}, {"c": "4J0523CTP", "d": "SEAL -O-RING", "m": "CTP", "u": "4A6", "t": 13, "f": 15, "x": 2, "k": "sob"}, {"c": "8M4432CTP", "d": "SEAL O RING(8T7160)", "m": "CTP", "u": "8A1", "t": 1, "f": 2, "x": 1, "k": "sob"}, {"c": "8M4443WOL", "d": "SEAL O RING(8T7279)", "m": "WORLD GASKET", "u": "8A1", "t": 1, "f": 2, "x": 1, "k": "sob"}, {"c": "8S6046CTP", "d": "SHIM", "m": "CTP", "u": "", "t": 6, "f": 7, "x": 1, "k": "sob"}, {"c": "8T4139CTP", "d": "BOLT", "m": "CTP", "u": "8A3", "t": 7, "f": 9, "x": 2, "k": "sob"}, {"c": "9W8452CTP", "d": "TIP LONG (1U3452)", "m": "CTP", "u": "", "t": 5, "f": 6, "x": 1, "k": "sob"}, {"c": "1324763DIR", "d": "PIN GET(8E6258)", "m": "DIRON", "u": "10B", "t": 12, "f": 18, "x": 6, "k": "sob"}, {"c": "2233360CTP", "d": "RING-WEAR", "m": "CTP", "u": "5D1", "t": 2, "f": 3, "x": 1, "k": "sob"}, {"c": "2J3506TGW", "d": "NUT 3/4\"", "m": "TGW", "u": "10I", "t": 131, "f": 157, "x": 26, "k": "sob"}, {"c": "3J9027CTP", "d": "RING WEAR", "m": "CTP", "u": "5D1", "t": 3, "f": 4, "x": 1, "k": "sob"}, {"c": "5P8250CPT", "d": "WASHER HARD 1\"", "m": "CPT", "u": "10H", "t": 31, "f": 34, "x": 3, "k": "sob"}, {"c": "5S7218FP", "d": "INSERT", "m": "FP DIESEL", "u": "5B3", "t": 5, "f": 6, "x": 1, "k": "sob"}, {"c": "6T1140CTP", "d": "BOLT", "m": "CTP", "u": "10G", "t": 6, "f": 9, "x": 3, "k": "sob"}, {"c": "BARRAS D74N", "d": "BARRA (AZUL)PARA CALZAR ZAPATAS 850", "m": "4N", "u": "", "t": 23, "f": 24, "x": 1, "k": "sob"}], "brands": [{"m": "CTP", "sku": 764, "teo": 4034, "fis": 3947, "dif": 57}, {"m": "WORLD GASKET", "sku": 503, "teo": 2315, "fis": 2269, "dif": 34}, {"m": "GHINASSI", "sku": 71, "teo": 345, "fis": 290, "dif": 5}, {"m": "TGW", "sku": 63, "teo": 4843, "fis": 4772, "dif": 8}, {"m": "DIRON", "sku": 54, "teo": 847, "fis": 793, "dif": 14}, {"m": "FP DIESEL", "sku": 50, "teo": 245, "fis": 229, "dif": 4}, {"m": "DONALDSON", "sku": 42, "teo": 61, "fis": 59, "dif": 0}, {"m": "AMERICAN CRANE", "sku": 35, "teo": 114, "fis": 111, "dif": 4}, {"m": "CATERPILLAR", "sku": 26, "teo": 156, "fis": 152, "dif": 3}, {"m": "DURASEAL", "sku": 14, "teo": 65, "fis": 65, "dif": 0}, {"m": "NTN", "sku": 11, "teo": 13, "fis": 13, "dif": 0}, {"m": "DISA", "sku": 6, "teo": 38, "fis": 32, "dif": 1}, {"m": "FRICTION", "sku": 6, "teo": 42, "fis": 24, "dif": 0}, {"m": "ITR", "sku": 5, "teo": 20, "fis": 20, "dif": 0}, {"m": "BOWER", "sku": 5, "teo": 6, "fis": 6, "dif": 0}, {"m": "MODENA", "sku": 4, "teo": 13, "fis": 13, "dif": 0}, {"m": "ALTERNATIVO", "sku": 4, "teo": 64, "fis": 64, "dif": 0}, {"m": "HIGH GASKET", "sku": 4, "teo": 13, "fis": 12, "dif": 1}, {"m": "TREK-DCF", "sku": 3, "teo": 5, "fis": 4, "dif": 0}, {"m": "TRISTARS", "sku": 3, "teo": 10, "fis": 10, "dif": 0}, {"m": "4N", "sku": 3, "teo": 44, "fis": 45, "dif": 1}, {"m": "BERCO", "sku": 2, "teo": 4, "fis": 4, "dif": 0}, {"m": "CPT", "sku": 2, "teo": 78, "fis": 80, "dif": 2}, {"m": "MTW-BLADES", "sku": 2, "teo": 5, "fis": 5, "dif": 0}, {"m": "ASZ", "sku": 1, "teo": 1, "fis": 1, "dif": 0}, {"m": "MIBA", "sku": 1, "teo": 1, "fis": 1, "dif": 0}, {"m": "V-TRACK", "sku": 1, "teo": 4, "fis": 4, "dif": 0}, {"m": "TIMKEN", "sku": 1, "teo": 1, "fis": 1, "dif": 0}, {"m": "S/M", "sku": 1, "teo": 1, "fis": 0, "dif": 0}]};
+const GLOBAL = {sku:1687, teo:13388, fis:13026, exact:92.1, cuadrados:1553, merma:362, condif:134};
 Chart.defaults.font.family="'Exo 2',sans-serif";Chart.defaults.color="#7c86a4";
 const P='#6d4eff',T='#0bb89a',TB='#00d9b8',A='#f5a623',R='#f2445b',G='#12b981';
 const grid={color:'rgba(20,28,52,.06)'};
 
-document.querySelectorAll('[data-count]').forEach(el=>{
-  const end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0);let t0=null,dur=1300;
-  function step(ts){if(!t0)t0=ts;let p=Math.min((ts-t0)/dur,1);p=1-Math.pow(1-p,3);
-    let v=end*p;el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('es-PE');
-    if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});
+document.querySelectorAll('[data-count]').forEach(el=>{const end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0);let t0=null,dur=1300;
+  function step(ts){if(!t0)t0=ts;let p=Math.min((ts-t0)/dur,1);p=1-Math.pow(1-p,3);let v=end*p;el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('es-PE');if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});
 
-new Chart(donut,{type:'doughnut',data:{labels:['Cuadrados','Faltantes','Sobrantes','Observación'],
-  datasets:[{data:[1553,96,32,6],backgroundColor:[G,R,A,P],borderColor:'#fff',borderWidth:3,hoverOffset:7}]},
-  options:{cutout:'73%',plugins:{legend:{position:'bottom',labels:{padding:15,usePointStyle:true,pointStyle:'circle',font:{size:12},color:'#39415f'}},
-  tooltip:{callbacks:{label:c=>` ${c.label}: ${c.raw} SKU (${(c.raw/1687*100).toFixed(1)}%)`}}}}});
+new Chart(donut,{type:'doughnut',data:{labels:['Cuadrados','Faltantes','Sobrantes','Observación'],datasets:[{data:[1553,96,32,6],backgroundColor:[G,R,A,P],borderColor:'#fff',borderWidth:3,hoverOffset:7}]},options:{cutout:'73%',plugins:{legend:{position:'bottom',labels:{padding:15,usePointStyle:true,pointStyle:'circle',font:{size:12},color:'#39415f'}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.raw} SKU (${(c.raw/1687*100).toFixed(1)}%)`}}}}});
+new Chart(fs,{type:'bar',data:{labels:['Ítems (SKU)','Unidades'],datasets:[{label:'Faltantes',data:[96,320],backgroundColor:R,borderRadius:6,maxBarThickness:46},{label:'Sobrantes',data:[32,72],backgroundColor:A,borderRadius:6,maxBarThickness:46}]},options:{plugins:{legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',padding:14,color:'#39415f'}}},scales:{y:{grid,ticks:{color:'#9aa3bd'}},x:{grid:{display:false},ticks:{color:'#39415f'}}}}});
+new Chart(brands,{type:'bar',data:{labels:['CTP','WORLD GASKET','GHINASSI','TGW','DIRON','FP DIESEL','DONALDSON','AMER. CRANE'],datasets:[{label:'SKU',data:[764,503,71,63,54,50,42,35],backgroundColor:(c)=>{const g=c.chart.ctx.createLinearGradient(0,0,c.chart.width,0);g.addColorStop(0,P);g.addColorStop(1,TB);return g;},borderRadius:6,maxBarThickness:26}]},options:{indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} códigos`}}},scales:{x:{grid,ticks:{color:'#9aa3bd'}},y:{grid:{display:false},ticks:{font:{family:"'Orbitron'",size:11},color:'#39415f'}}}}});
+new Chart(acc,{type:'bar',data:{labels:['DONALDSON','W. GASKET','GHINASSI','CTP','FP DIESEL','A. CRANE','TGW','DIRON'],datasets:[{label:'Exactitud %',data:[100,93.2,93,92.5,92,88.6,87.3,74.1],backgroundColor:(c)=>{const v=c.raw;return v>=95?G:v>=88?TB:v>=80?A:R;},borderRadius:6,maxBarThickness:30}]},options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}% cuadrado`}}},scales:{y:{grid,min:60,max:100,ticks:{color:'#9aa3bd',callback:v=>v+'%'}},x:{grid:{display:false},ticks:{font:{family:"'Orbitron'",size:10},maxRotation:40,minRotation:40,color:'#39415f'}}}}});
 
-new Chart(fs,{type:'bar',data:{labels:['Ítems (SKU)','Unidades'],
-  datasets:[{label:'Faltantes',data:[96,320],backgroundColor:R,borderRadius:6,maxBarThickness:46},
-    {label:'Sobrantes',data:[32,72],backgroundColor:A,borderRadius:6,maxBarThickness:46}]},
-  options:{plugins:{legend:{position:'bottom',labels:{usePointStyle:true,pointStyle:'circle',padding:14,color:'#39415f'}}},
-  scales:{y:{grid,ticks:{color:'#9aa3bd'}},x:{grid:{display:false},ticks:{color:'#39415f'}}}}});
+/* ---------- FILTERS ---------- */
+let F={m:'',k:'',q:''}, sortKey='x', sortDir=-1;
+const marcaSel=document.getElementById('fMarca');
+DATA.brands.filter(b=>b.dif>0).sort((a,b)=>a.m.localeCompare(b.m)).forEach(b=>{
+  const o=document.createElement('option');o.value=b.m;o.textContent=`${b.m} (${b.dif})`;marcaSel.appendChild(o);});
 
-new Chart(brands,{type:'bar',data:{labels:['CTP','WORLD GASKET','GHINASSI','TGW','DIRON','FP DIESEL','DONALDSON','AMER. CRANE'],
-  datasets:[{label:'SKU',data:[764,503,71,63,54,50,42,35],
-    backgroundColor:(c)=>{const g=c.chart.ctx.createLinearGradient(0,0,c.chart.width,0);g.addColorStop(0,P);g.addColorStop(1,TB);return g;},
-    borderRadius:6,maxBarThickness:26}]},
-  options:{indexAxis:'y',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw} códigos`}}},
-  scales:{x:{grid,ticks:{color:'#9aa3bd'}},y:{grid:{display:false},ticks:{font:{family:"'Orbitron'",size:11},color:'#39415f'}}}}});
+function apply(){
+  let rows=DATA.diffs.filter(d=>{
+    if(F.m && d.m!==F.m) return false;
+    if(F.k && d.k!==F.k) return false;
+    if(F.q){const q=F.q.toLowerCase();if(!(d.c.toLowerCase().includes(q)||d.d.toLowerCase().includes(q))) return false;}
+    return true;});
+  rows.sort((a,b)=>{let va=a[sortKey],vb=b[sortKey];if(typeof va==='string')return sortDir*va.localeCompare(vb);return sortDir*(va-vb);});
+  // summary
+  const falt=rows.filter(r=>r.k==='falt'),sob=rows.filter(r=>r.k==='sob');
+  const fu=falt.reduce((s,r)=>s+r.x,0),su=sob.reduce((s,r)=>s+r.x,0);
+  document.getElementById('rItems').textContent=rows.length;
+  document.getElementById('rFalt').textContent=`${falt.length} · ${fu} und`;
+  document.getElementById('rSob').textContent=`${sob.length} · ${su} und`;
+  const net=su-fu;document.getElementById('rNet').textContent=(net>0?'+':net<0?'−':'')+Math.abs(net)+' und';
+  // table
+  const tb=document.getElementById('dbody');tb.innerHTML='';
+  document.getElementById('empty').style.display=rows.length?'none':'block';
+  rows.forEach(r=>{tb.innerHTML+=`<tr><td class="code">${r.c}</td><td class="desc" title="${r.d}">${r.d}</td><td style="color:#7c86a4">${r.m}</td><td style="color:#9aa3bd;font-size:12px">${r.u||'—'}</td><td>${r.t}</td><td>${r.f}</td><td><span class="pill ${r.k==='falt'?'r':'a'}">${r.k==='falt'?'−':'+'}${r.x}</span></td><td><span class="ktag ${r.k}">${r.k==='falt'?'FALTANTE':'SOBRANTE'}</span></td></tr>`;});
+  buildRecs(rows);
+}
+document.querySelectorAll('.fpill').forEach(p=>p.addEventListener('click',()=>{
+  document.querySelectorAll('.fpill').forEach(x=>x.classList.remove('on','falt','sob'));
+  p.classList.add('on');if(p.dataset.k)p.classList.add(p.dataset.k);F.k=p.dataset.k;apply();}));
+marcaSel.addEventListener('change',()=>{F.m=marcaSel.value;apply();});
+document.getElementById('fSearch').addEventListener('input',e=>{F.q=e.target.value;apply();});
+document.getElementById('fReset').addEventListener('click',()=>{F={m:'',k:'',q:''};marcaSel.value='';document.getElementById('fSearch').value='';
+  document.querySelectorAll('.fpill').forEach(x=>x.classList.remove('on','falt','sob'));document.querySelector('.fpill[data-k=""]').classList.add('on');apply();});
+document.querySelectorAll('th.sortable').forEach(th=>th.addEventListener('click',()=>{const k=th.dataset.s;if(sortKey===k)sortDir*=-1;else{sortKey=k;sortDir=(k==='x'||k==='t'||k==='f')?-1:1;}apply();}));
+document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{document.getElementById('fSearch').value=c.textContent;F.q=c.textContent;document.getElementById('fSearch').scrollIntoView({behavior:'smooth',block:'center'});apply();}));
 
-new Chart(acc,{type:'bar',data:{labels:['DONALDSON','W. GASKET','GHINASSI','CTP','FP DIESEL','A. CRANE','TGW','DIRON'],
-  datasets:[{label:'Exactitud %',data:[100,93.2,93,92.5,92,88.6,87.3,74.1],
-    backgroundColor:(c)=>{const v=c.raw;return v>=95?G:v>=88?TB:v>=80?A:R;},borderRadius:6,maxBarThickness:30}]},
-  options:{plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw}% cuadrado`}}},
-  scales:{y:{grid,min:60,max:100,ticks:{color:'#9aa3bd',callback:v=>v+'%'}},
-  x:{grid:{display:false},ticks:{font:{family:"'Orbitron'",size:10},maxRotation:40,minRotation:40,color:'#39415f'}}}}});
+/* ---------- LOCAL RECOMMENDATION ENGINE ---------- */
+function buildRecs(rows){
+  const recs=[];
+  const falt=rows.filter(r=>r.k==='falt'),sob=rows.filter(r=>r.k==='sob');
+  const fu=falt.reduce((s,r)=>s+r.x,0),su=sob.reduce((s,r)=>s+r.x,0);
+  // 1. Stock fantasma (fis 0, teo>0)
+  const ghost=falt.filter(r=>r.f===0&&r.t>0).sort((a,b)=>b.x-a.x);
+  if(ghost.length){recs.push({lvl:'crit',ico:'⛔',t:'Stock fantasma — prioridad máxima',
+    x:`<b>${ghost.length} SKU</b> con stock físico 0 y teórico >0 (${ghost.reduce((s,r)=>s+r.x,0)} und). Encabeza <b>${ghost[0].c}</b> (${ghost[0].t} und, ${ghost[0].m}). Genera ajuste/nota de crédito y audita los movimientos de salida no registrados.`});}
+  // 2. Cross-picking (mismo prefijo, uno falt uno sob)
+  const cross=[];const byPre={};
+  rows.forEach(r=>{const pre=r.c.replace(/[^0-9A-Za-z]/g,'').slice(0,5);(byPre[pre]=byPre[pre]||[]).push(r);});
+  Object.values(byPre).forEach(g=>{const f=g.find(x=>x.k==='falt'),s=g.find(x=>x.k==='sob');if(f&&s&&f.c!==s.c)cross.push([f,s]);});
+  if(cross.length){const[f,s]=cross[0];recs.push({lvl:'warn',ico:'🔀',t:'Posible cruce de picking',
+    x:`<b>${f.c}</b> faltan ${f.x} y <b>${s.c}</b> sobran ${s.x} (mismo grupo${f.m===s.m?', '+f.m:''}). Suele ser confusión al despachar códigos parecidos — verifica el picking y reasigna.${cross.length>1?` (+${cross.length-1} pares más)`:''}`});}
+  // 3. Marca de mayor riesgo (contexto global si no hay filtro de marca)
+  if(!F.m){const risky=DATA.brands.filter(b=>b.sku>=20).map(b=>({...b,acc:(b.sku-b.dif)/b.sku*100})).sort((a,b)=>a.acc-b.acc)[0];
+    if(risky&&risky.acc<90)recs.push({lvl:'warn',ico:'🎯',t:`${risky.m}: marca de mayor riesgo`,
+      x:`Exactitud <b>${risky.acc.toFixed(1)}%</b> (${risky.dif} de ${risky.sku} SKU con diferencia). Recontar esta marca al 100% y revisar su proceso de recepción/ubicación.`});}
+  // 4. Top desviación individual
+  const top=[...rows].sort((a,b)=>b.x-a.x)[0];
+  if(top)recs.push({lvl:'info',ico:'📌',t:'Mayor desviación individual',
+    x:`<b>${top.c}</b> (${top.m}) — ${top.k==='falt'?'faltan':'sobran'} <b>${top.x} und</b>. ${top.d?top.d+'. ':''}Confirmar ${top.k==='falt'?'consumo o salida no registrada':'ingreso no registrado o doble conteo'}.`});
+  // 5. Sobrantes -> regularizar
+  if(sob.length)recs.push({lvl:'info',ico:'📦',t:'Regularizar sobrantes',
+    x:`<b>${sob.length} SKU</b> con ${su} und físicas por encima del sistema. Ingresar por acta de sobrante y cruzar con recepciones sin registrar (hay 15 códigos que ni figuran en el inventario).`});
+  // 6. Balance / positivo
+  if(rows.length){const netTxt=(su-fu);
+    recs.push({lvl: (fu>su?'crit':'good'),ico: fu>su?'📉':'⚖️',t:'Impacto neto del filtro',
+    x:`Faltan ${fu} und y sobran ${su} und → impacto neto <b>${netTxt>=0?'+':'−'}${Math.abs(netTxt)} und</b>. ${fu>su?'Predomina la merma: valorízala en soles para dimensionar la pérdida.':'Predominan los sobrantes: probable subregistro de ingresos más que pérdida real.'}`});}
+  if(!rows.length)recs.push({lvl:'good',ico:'✅',t:'Sin diferencias en este filtro',x:'Los SKU de esta selección cuadran físico contra teórico.'});
+  // 7. Benchmark (solo vista global)
+  if(!F.m&&!F.k&&!F.q)recs.push({lvl:'good',ico:'🏆',t:'Exactitud vs estándar',
+    x:`92.1% de exactitud de SKU. El estándar de clase A es ≥95%; el gap está en <b>~8% de los códigos</b> y se concentra en pocas marcas. Cerrar DIRON y TGW subiría el indicador global por encima del umbral.`});
+  const el=document.getElementById('recs');el.innerHTML='';
+  recs.forEach(r=>{el.innerHTML+=`<div class="rec ${r.lvl}"><div class="ico">${r.ico}</div><div><div class="rt">${r.t}</div><div class="rx">${r.x}</div></div></div>`;});
+}
 
-const falt=[["6Y2750CGR","Washer B P/330BL (cadena)","GHINASSI",50,0,50],["2J3505TGW",'Nut 7/8"',"TGW",112,82,30],
-["6Y0846TGW","Cod duplicado","TGW",45,26,19],["7X2575TGW","Bolt","TGW",29,11,18],["1324766DIR","Pin-GET (9J2308)","DIRON",30,13,17],
-["7W9143WOL","Seal-in VA","W. GASKET",16,4,12],["1504741TGW","Bolt-track","TGW",141,130,11],["3B4514CTP","Lock washer (8T4105)","CTP",10,0,10],
-["3B4510CTP","Lockwasher","CTP",9,0,9],["1140468DIR","Pin G.E.T (8E0468)","DIRON",24,16,8]];
-const sob=[["2J3506TGW",'Nut 3/4"',"TGW",131,157,26],["1324763DIR","Pin GET (8E6258)","DIRON",12,18,6],["1P3704CTP","Seal rectan (5J1357)","CTP",22,25,3],
-["5P8250CPT",'Washer hard 1"',"CPT",31,34,3],["6T1140CTP","Bolt","CTP",6,9,3],["3D2824CTP","Seal-o ring","CTP",6,8,2],
-["4J0521WOL","Seal o rin","W. GASKET",22,24,2],["4J0523CTP","Seal-o-ring","CTP",13,15,2]];
-function fill(id,rows,cls){const tb=document.querySelector(id+' tbody');
-  rows.forEach(r=>{tb.innerHTML+=`<tr><td class="code">${r[0]}</td><td class="desc" title="${r[1]}">${r[1]}</td>
-  <td style="color:#7c86a4">${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td>
-  <td><span class="pill ${cls}">${cls=='r'?'\u2212':'+'}${r[5]}</span></td></tr>`;});}
-fill('#tfalt',falt,'r');fill('#tsob',sob,'a');
+/* ---------- CLAUDE AI EXECUTIVE SUMMARY ---------- */
+document.getElementById('btnAI').addEventListener('click',async function(){
+  const btn=this;const out=document.getElementById('aiOut');
+  const rows=DATA.diffs.filter(d=>(!F.m||d.m===F.m)&&(!F.k||d.k===F.k)&&(!F.q||d.c.toLowerCase().includes(F.q.toLowerCase())||d.d.toLowerCase().includes(F.q.toLowerCase())));
+  const falt=rows.filter(r=>r.k==='falt'),sob=rows.filter(r=>r.k==='sob');
+  const fu=falt.reduce((s,r)=>s+r.x,0),su=sob.reduce((s,r)=>s+r.x,0);
+  const topF=[...falt].sort((a,b)=>b.x-a.x).slice(0,6).map(r=>`${r.c}(${r.m}) -${r.x}`).join(', ');
+  const topS=[...sob].sort((a,b)=>b.x-a.x).slice(0,4).map(r=>`${r.c}(${r.m}) +${r.x}`).join(', ');
+  const ctx=`Inventario físico vs teórico del almacén ALM03 (Peru Tractor, Arequipa, 07-05-2026). Total 1687 SKU, 28 marcas, exactitud global 92.1%, merma neta 362 und.
+Filtro actual: marca=${F.m||'todas'}, tipo=${F.k||'todos'}, búsqueda=${F.q||'ninguna'}.
+En la selección: ${rows.length} ítems con diferencia — ${falt.length} faltantes (${fu} und) y ${sob.length} sobrantes (${su} und).
+Top faltantes: ${topF||'—'}. Top sobrantes: ${topS||'—'}.
+Contexto marcas de mayor riesgo: DIRON exactitud 74.1%, TGW 87.3%. Observaciones: 2 productos en mal estado, 15 códigos físicos que no figuran en el sistema.`;
+  const prompt=`Eres analista senior de inventarios y supply chain. Con estos datos redacta un ANÁLISIS EJECUTIVO breve en español (máx 180 palabras) para la gerencia de Peru Tractor. Estructura: (1) diagnóstico en 2 frases, (2) 3 riesgos/causas probables priorizados, (3) 3 acciones concretas y accionables. Tono profesional, directo, sin relleno. No inventes cifras fuera de las dadas.\n\nDATOS:\n${ctx}`;
+  btn.disabled=true;const orig=btn.innerHTML;btn.innerHTML='<span class="spin"></span> Analizando...';out.classList.remove('show');
+  try{
+    const resp=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
+    if(!resp.ok)throw new Error("HTTP "+resp.status);
+    const d=await resp.json();
+    const txt=d.content.filter(i=>i.type==='text').map(i=>i.text).join('\n').trim();
+    out.innerHTML=`<h4>⬡ ANÁLISIS EJECUTIVO · GRIMA IA</h4>${txt.replace(/</g,'&lt;')}`;out.classList.add('show');
+  }catch(e){
+    out.innerHTML=`<h4>⬡ ANÁLISIS EJECUTIVO</h4>No se pudo conectar con Claude desde este entorno (${e.message}). El análisis con IA en vivo funciona dentro de Claude; para tu despliegue en Vercel necesitas un pequeño backend (función serverless) que llame a la API con tu API key de Anthropic — así no expones la clave en el navegador. Mientras tanto, las <b>Recomendaciones inteligentes</b> de arriba funcionan siempre, sin conexión.`;out.classList.add('show');
+  }finally{btn.disabled=false;btn.innerHTML=orig;}
+});
+
+apply();
 </script>
 </body>
 </html>
