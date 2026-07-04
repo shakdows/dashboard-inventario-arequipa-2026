@@ -62,6 +62,8 @@
   .fpill{font-family:'Orbitron';font-size:11px;letter-spacing:.5px;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:all .2s}
   .fpill.on{background:var(--purple);color:#fff;border-color:var(--purple);box-shadow:0 6px 16px -8px rgba(109,78,255,.6)}
   .fpill.on.falt{background:var(--red);border-color:var(--red)}.fpill.on.sob{background:var(--amber);border-color:var(--amber)}
+  .fpill.on.match{background:linear-gradient(135deg,var(--purple),var(--teal));border-color:transparent;color:#fff}
+  .fpill.match-idle{border-color:rgba(109,78,255,.35);color:var(--purple-d)}
   .freset{margin-left:auto;font-family:'Orbitron';font-size:11px;padding:10px 14px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--muted);cursor:pointer;align-self:flex-end}
   .freset:hover{color:var(--purple);border-color:var(--purple)}
   .resbar{display:flex;gap:22px;flex-wrap:wrap;margin-top:16px;padding:14px 18px;background:var(--bg2);border-radius:12px;border:1px solid var(--line)}
@@ -74,6 +76,16 @@
   .tab{font-family:'Orbitron';font-size:12px;letter-spacing:1px;padding:13px 22px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:9px}
   .tab.active{background:linear-gradient(135deg,var(--purple),var(--purple-d));color:#fff;border-color:transparent;box-shadow:0 10px 26px -12px rgba(109,78,255,.6)}
   .tab .tn{font-size:10px;opacity:.7}
+  .tab[data-tab="ia"]:not(.active){border-color:rgba(109,78,255,.4);color:var(--purple-d);animation:tabGlow 2.4s ease-in-out infinite}
+  @keyframes tabGlow{0%,100%{box-shadow:0 0 0 rgba(109,78,255,0)}50%{box-shadow:0 0 18px -2px rgba(109,78,255,.55)}}
+  .ai-wrap{position:relative;padding:2px;border-radius:18px;background:linear-gradient(120deg,#6d4eff,#00d9b8,#f5a623,#6d4eff);background-size:300% 300%;animation:borderflow 7s ease infinite;box-shadow:0 22px 54px -26px rgba(109,78,255,.55)}
+  .ai-wrap .card{border-radius:16px}
+  @keyframes borderflow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  @keyframes glowPulse{0%,100%{box-shadow:0 0 0 rgba(109,78,255,0);filter:brightness(1)}50%{box-shadow:0 0 20px rgba(109,78,255,.75);filter:brightness(1.12)}}
+  .premium-pill{font-family:'Orbitron';font-size:10px;letter-spacing:1px;padding:6px 12px;border-radius:20px;color:#7a5b00;background:linear-gradient(135deg,#ffe08a,#f5a623);box-shadow:0 6px 16px -8px rgba(245,166,35,.7);animation:glowPulse 2.2s ease-in-out infinite;white-space:nowrap}
+  .btn-copy{font-family:'Orbitron';font-size:10px;letter-spacing:.5px;padding:6px 12px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--purple-d);cursor:pointer;float:right;margin-top:-2px}
+  .btn-copy:hover{border-color:var(--purple);background:#f6f4ff}
+  .ai-sub{font-size:11px;color:var(--muted2);margin:-4px 0 12px}
   .tabpane{display:none}.tabpane.show{display:block;animation:fade .35s}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
@@ -112,7 +124,7 @@
   .ktag.falt{background:rgba(242,68,91,.1);color:var(--red)}.ktag.sob{background:rgba(245,166,35,.12);color:#c47f0d}
   .empty{padding:40px;text-align:center;color:var(--muted2);font-style:italic}
   .ai-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-  .ai-badge{font-family:'Orbitron';font-size:10px;letter-spacing:1.5px;padding:5px 11px;border-radius:20px;background:linear-gradient(135deg,var(--purple),var(--teal));color:#fff}
+  .ai-badge{font-family:'Orbitron';font-size:10px;letter-spacing:1.5px;padding:5px 11px;border-radius:20px;background:linear-gradient(135deg,var(--purple),var(--teal));color:#fff;animation:glowPulse 2.2s ease-in-out infinite}
   .recs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
   .rec{display:flex;gap:13px;padding:15px 16px;border-radius:13px;background:var(--bg2);border:1px solid var(--line);border-left:4px solid var(--purple)}
   .rec.crit{border-left-color:var(--red);background:rgba(242,68,91,.04)}.rec.warn{border-left-color:var(--amber);background:rgba(245,166,35,.05)}
@@ -179,7 +191,8 @@
       <div class="fgroup"><label>Tipo</label><div class="pills">
         <button class="fpill on" data-k="">Todos</button>
         <button class="fpill" data-k="falt">Faltantes</button>
-        <button class="fpill" data-k="sob">Sobrantes</button></div></div>
+        <button class="fpill" data-k="sob">Sobrantes</button>
+        <button class="fpill match-idle" data-k="match" title="Códigos parecidos donde uno falta y otro sobra — posible cruce">🔀 Coincidencias</button></div></div>
       <div class="fgroup"><label>Buscar código o descripción</label><input class="search" id="fSearch" placeholder="Ej. 6Y2750, SEAL, NUT..."></div>
       <button class="freset" id="fReset">↺ Limpiar</button>
     </div>
@@ -232,14 +245,15 @@
 
   <!-- TAB 2: RECOMENDACIONES IA -->
   <div class="tabpane" id="pane-ia">
-    <div class="card">
+    <div class="ai-wrap"><div class="card ai-card">
       <div class="ai-head"><h3 style="margin:0"><span class="dot"></span>Recomendaciones inteligentes <span class="ai-badge">⬡ GRIMA IA</span></h3>
         <div class="ai-hint" id="iaScope">Analizando: vista global</div></div>
       <div class="recs" id="recs"></div>
       <div class="ai-cta"><button class="btn-ai" id="btnAI"><span>⬡</span> Generar análisis ejecutivo con IA</button>
-        <span class="ai-hint">Redacta un resumen para gerencia con Claude a partir de los datos filtrados.</span></div>
+        <span class="premium-pill">⭐ PREMIUM</span>
+        <span class="ai-hint">Resumen ejecutivo listo para compartir con toda la gerencia · <b>US$10 por uso</b> · <b>US$50/mes ilimitado</b></span></div>
       <div class="ai-out" id="aiOut"></div>
-    </div>
+    </div></div>
   </div>
 
   <div class="sec">Observaciones del conteo</div>
@@ -267,7 +281,11 @@ const short=m=>({'WORLD GASKET':'W. GASKET','AMERICAN CRANE':'A. CRANE'}[m]||m);
 const brandsSorted=DATA.brands.filter(b=>b.m!=='S/M');
 const top8=brandsSorted.slice(0,8);
 const accList=top8.map(b=>({m:b.m,acc:(b.sku-b.dif)/b.sku*100})).sort((a,b)=>b.acc-a.acc);
-let F={m:'',k:'',q:''}, sortKey='x', sortDir=-1;
+let F={m:'',k:'',q:''}, sortKey='c', sortDir=1;
+/* set of codes that appear as BOTH faltante and sobrante within the same 5-char prefix group */
+const MATCH=(function(){const byPre={};DATA.diffs.forEach(r=>{const p=r.c.replace(/[^0-9A-Za-z]/g,'').slice(0,5);(byPre[p]=byPre[p]||[]).push(r);});const s=new Set();Object.values(byPre).forEach(g=>{if(g.some(x=>x.k==='falt')&&g.some(x=>x.k==='sob'))g.forEach(x=>s.add(x.c));});return s;})();
+function passK(d){return F.k===''?true:F.k==='match'?MATCH.has(d.c):d.k===F.k;}
+function filterRows(){return DATA.diffs.filter(d=>(!F.m||d.m===F.m)&&passK(d)&&(!F.q||d.c.toLowerCase().includes(F.q.toLowerCase())||d.d.toLowerCase().includes(F.q.toLowerCase())));}
 
 /* fill marca options */
 const marcaSel=document.getElementById('fMarca');
@@ -295,8 +313,8 @@ function apply(){
   const difItems=scopeBrands.reduce((s,b)=>s+b.dif,0);
   const cuad=sku-difItems, exact=sku?(cuad/sku*100):0, merma=teo-fis;
 
-  // filtered diffs (marca+tipo+search) for table/fs/recs
-  let rows=DATA.diffs.filter(d=>(!F.m||d.m===F.m)&&(!F.k||d.k===F.k)&&(!F.q||d.c.toLowerCase().includes(F.q.toLowerCase())||d.d.toLowerCase().includes(F.q.toLowerCase())));
+  // filtered diffs (marca+tipo/coincidencias+search) for table/fs/recs
+  let rows=filterRows();
   rows.sort((a,b)=>{let va=a[sortKey],vb=b[sortKey];if(typeof va==='string')return sortDir*va.localeCompare(vb);return sortDir*(va-vb);});
   // marca-scope diffs (ignore tipo/search) for doughnut
   const md=DATA.diffs.filter(d=>!F.m||d.m===F.m);
@@ -340,9 +358,11 @@ function apply(){
   document.getElementById('rFalt').textContent=`${falt.length} · ${fu} und`;
   document.getElementById('rSob').textContent=`${sob.length} · ${su} und`;
   const net=su-fu;document.getElementById('rNet').textContent=(net>0?'+':net<0?'−':'')+Math.abs(net)+' und';
-  const scopeTxt=F.m?F.m:(F.k?({falt:'Solo faltantes',sob:'Solo sobrantes'})[F.k]:'Vista global');
+  const kmap={falt:'Solo faltantes',sob:'Solo sobrantes',match:'Coincidencias falt/sob'};
+  const scopeTxt=F.m?F.m:(F.k?kmap[F.k]:'Vista global');
   document.getElementById('scopeTag').textContent=(F.q?'Búsqueda: '+F.q:scopeTxt);
-  document.getElementById('iaScope').textContent='Analizando: '+(F.m||(F.k?({falt:'faltantes',sob:'sobrantes'})[F.k]:'vista global'))+(F.q?' · "'+F.q+'"':'');
+  const iamap={falt:'faltantes',sob:'sobrantes',match:'coincidencias faltante/sobrante'};
+  document.getElementById('iaScope').textContent='Analizando: '+(F.m||(F.k?iamap[F.k]:'vista global'))+(F.q?' · "'+F.q+'"':'');
 
   // table
   const tb=document.getElementById('dbody');tb.innerHTML='';
@@ -373,7 +393,9 @@ function buildRecs(rows){
   if(ghost.length)recs.push({lvl:'crit',ico:'⛔',t:'Stock fantasma — prioridad máxima',x:`<b>${ghost.length} SKU</b> con físico 0 y teórico >0 (${ghost.reduce((s,r)=>s+r.x,0)} und). Encabeza <b>${ghost[0].c}</b> (${ghost[0].t} und, ${ghost[0].m}). Generar ajuste/NC y auditar salidas no registradas.`});
   const byPre={};rows.forEach(r=>{const pre=r.c.replace(/[^0-9A-Za-z]/g,'').slice(0,5);(byPre[pre]=byPre[pre]||[]).push(r);});
   const cross=[];Object.values(byPre).forEach(g=>{const f=g.find(x=>x.k==='falt'),s=g.find(x=>x.k==='sob');if(f&&s&&f.c!==s.c)cross.push([f,s]);});
-  if(cross.length){const[f,s]=cross[0];recs.push({lvl:'warn',ico:'🔀',t:'Posible cruce de picking',x:`<b>${f.c}</b> faltan ${f.x} y <b>${s.c}</b> sobran ${s.x} (mismo grupo${f.m===s.m?', '+f.m:''}). Suele ser confusión al despachar códigos parecidos — verificar picking.${cross.length>1?` (+${cross.length-1} pares)`:''}`});}
+  if(F.k==='match'&&cross.length){const list=cross.slice(0,8).map(([f,s])=>`<b>${f.c}</b> −${f.x} ⇄ <b>${s.c}</b> +${s.x}`).join(' &nbsp;·&nbsp; ');
+    recs.push({lvl:'warn',ico:'🔀',t:`${cross.length} coincidencia${cross.length>1?'s':''} detectada${cross.length>1?'s':''}`,x:`Pares de códigos parecidos donde uno falta y otro sobra — señal típica de cruce de picking o mal registro del código. ${list}. Reclasificar/verificar despacho antes de ajustar stock.`});}
+  else if(cross.length){const[f,s]=cross[0];recs.push({lvl:'warn',ico:'🔀',t:'Posible cruce de picking',x:`<b>${f.c}</b> faltan ${f.x} y <b>${s.c}</b> sobran ${s.x} (mismo grupo${f.m===s.m?', '+f.m:''}). Suele ser confusión al despachar códigos parecidos — usa el filtro <b>🔀 Coincidencias</b> para verlos todos.${cross.length>1?` (+${cross.length-1} pares)`:''}`});}
   if(!F.m){const risky=brandsSorted.filter(b=>b.sku>=20).map(b=>({...b,acc:(b.sku-b.dif)/b.sku*100})).sort((a,b)=>a.acc-b.acc)[0];
     if(risky&&risky.acc<90)recs.push({lvl:'warn',ico:'🎯',t:`${risky.m}: marca de mayor riesgo`,x:`Exactitud <b>${risky.acc.toFixed(1)}%</b> (${risky.dif} de ${risky.sku} SKU con diferencia). Recontar al 100% y revisar recepción/ubicación.`});}
   const top=[...rows].sort((a,b)=>b.x-a.x)[0];
@@ -389,7 +411,7 @@ function buildRecs(rows){
 /* CLAUDE AI */
 document.getElementById('btnAI').addEventListener('click',async function(){
   const btn=this,out=document.getElementById('aiOut');
-  const rows=DATA.diffs.filter(d=>(!F.m||d.m===F.m)&&(!F.k||d.k===F.k)&&(!F.q||d.c.toLowerCase().includes(F.q.toLowerCase())||d.d.toLowerCase().includes(F.q.toLowerCase())));
+  const rows=filterRows();
   const falt=rows.filter(r=>r.k==='falt'),sob=rows.filter(r=>r.k==='sob');
   const fu=falt.reduce((s,r)=>s+r.x,0),su=sob.reduce((s,r)=>s+r.x,0);
   const topF=[...falt].sort((a,b)=>b.x-a.x).slice(0,6).map(r=>`${r.c}(${r.m}) -${r.x}`).join(', ');
@@ -400,10 +422,13 @@ document.getElementById('btnAI').addEventListener('click',async function(){
   try{const resp=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-6",max_tokens:1000,messages:[{role:"user",content:prompt}]})});
     if(!resp.ok)throw new Error("HTTP "+resp.status);const d=await resp.json();
     const txt=d.content.filter(i=>i.type==='text').map(i=>i.text).join('\n').trim();
-    out.innerHTML=`<h4>⬡ ANÁLISIS EJECUTIVO · GRIMA IA</h4>${txt.replace(/</g,'&lt;')}`;out.classList.add('show');
-  }catch(e){out.innerHTML=`<h4>⬡ ANÁLISIS EJECUTIVO</h4>No se pudo conectar con Claude desde este entorno (${e.message}). El análisis con IA en vivo funciona dentro de Claude; para tu despliegue en Vercel usa una función serverless que llame a la API con tu key del lado del servidor (no la expongas en el navegador). Las <b>Recomendaciones inteligentes</b> de arriba funcionan siempre, sin conexión.`;out.classList.add('show');}
+    window.__lastAnalysis=`ANÁLISIS EJECUTIVO — INVENTARIO ALM03 · Peru Tractor · 07 May 2026\nAlcance: ${document.getElementById('iaScope').textContent.replace('Analizando: ','')}\n\n${txt}\n\n— Generado con Grima IA · VERONIX`;
+    out.innerHTML=`<button class="btn-copy" onclick="copyAnalysis()">📋 Copiar / compartir</button><h4>⬡ ANÁLISIS EJECUTIVO · GRIMA IA</h4><div class="ai-sub">Peru Tractor · Almacén ALM03 · 07 May 2026 · listo para reenviar a gerencia</div>${txt.replace(/</g,'&lt;')}`;out.classList.add('show');
+  }catch(e){out.innerHTML=`<h4>⬡ ANÁLISIS EJECUTIVO</h4>No se pudo conectar con Claude desde este entorno (${e.message}). En la <b>versión premium hospedada</b> este análisis se genera desde un servidor seguro (tu API key nunca viaja al navegador) — es lo que se cobra por uso o por suscripción. Mientras tanto, las <b>Recomendaciones inteligentes</b> de arriba funcionan siempre, sin conexión ni costo.`;out.classList.add('show');}
   finally{btn.disabled=false;btn.innerHTML=orig;}
 });
+
+window.copyAnalysis=function(){const t=window.__lastAnalysis||'';navigator.clipboard.writeText(t).then(()=>{const b=document.querySelector('.btn-copy');if(b){const o=b.textContent;b.textContent='✓ Copiado';setTimeout(()=>b.textContent=o,1600);}}).catch(()=>{});};
 
 apply();
 </script>
